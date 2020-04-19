@@ -33,7 +33,13 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-http-testkit"    % akkaHttpVersion % Test,
   "com.typesafe.akka" %% "akka-testkit"         % akkaVersion     % Test,
   "com.typesafe.akka" %% "akka-stream-testkit"  % akkaVersion     % Test,
-  "org.scalatest"     %% "scalatest"            % "3.1.0"         % Test
+  "org.scalatest"     %% "scalatest"            % "3.1.0"         % Test,
+  Cinnamon.library.cinnamonCHMetrics,
+  Cinnamon.library.cinnamonAkka,
+  Cinnamon.library.cinnamonAkkaHttp,
+  Cinnamon.library.cinnamonJvmMetricsProducer,
+  Cinnamon.library.cinnamonPrometheus,
+  Cinnamon.library.cinnamonPrometheusHttpServer
 )
 
 PB.targets in Compile := Seq(
@@ -41,3 +47,7 @@ PB.targets in Compile := Seq(
 )
 
 enablePlugins(JavaAppPackaging)
+
+enablePlugins(Cinnamon)
+cinnamon in run := true
+cinnamon in test := true
